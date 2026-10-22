@@ -1,6 +1,8 @@
 ---
 name: youtube-shorts
-description: TikTok에서 중국어 상품명으로 쇼핑 영상을 검색하고, 원본 자막 블러, 한국어 나레이션 합성, 쇼핑 쇼츠 제작, 썸네일 생성 작업을 요청할 때 사용한다.
+description: >-
+  TikTok에서 중국어 상품명으로 쇼핑 영상을 검색하고, 원본 자막 블러,
+  한국어 나레이션 합성, 쇼핑 쇼츠 제작, 썸네일 생성 작업을 요청할 때 사용한다.
 metadata:
   version: "V12"
 ---
@@ -8,6 +10,9 @@ metadata:
 # 쇼핑 쇼츠 제작 V12
 이 스킬은 사용자가 제공한 상품 정보와 준비된 한국어 WAV 나레이션으로 30초 미만 세로 쇼츠, 썸네일, 메타데이터를 로컬에서 만든다. 외부 서비스 API 연결이나 API 키 입력을 요구하지 않는다. TTS 생성은 포함하지 않으므로 씬별 WAV 음성을 준비해 프로젝트의 `audio/NN.wav`에 넣는다.
 설치와 작업 경로
+이 문서의 `setup.py`, `scripts/`, `assets/`는 모두 이 `SKILL.md`가 있는 스킬 폴더 기준이다. 저장소 루트에서 설치할 때는 `python .agents/skills/youtube-shorts/setup.py`를 실행한다. `setup.py`는 패키지 배포용 설정이 아닌 설치 실행 스크립트이므로 `pip install .`을 사용하지 않는다.
+스크립트 실행 예: `python .agents/skills/youtube-shorts/scripts/download.py --help`. 렌더링 설정의 `font_file`은 `assets/fonts/Jua-Regular.ttf`의 실제 절대 경로로 지정한다. `build.json`의 미디어 상대 경로는 해당 JSON 파일의 폴더를 기준으로 한다.
+Linux에서는 시스템 ffmpeg/ffprobe를 사용한다. `scripts/prepare_local_runtime.py`는 Windows `.exe`를 다운로드하므로 Linux에서 실행하지 않는다. 실제 상품 작업 폴더와 씬별 WAV는 스킬 리소스 폴더와 분리한다.
 스킬 폴더의 `setup.py`를 한 번 실행한다. Python 3.10 이상, ffmpeg, ffprobe가 필요하다. ffmpeg가 PATH에 없으면 `FFMPEG_BIN`과 `FFPROBE_BIN` 환경변수로 실행 파일 경로를 지정한다. 중간 파일은 `COUPANG_SHORTS_PROJECT`로 지정한 폴더의 `output/` 아래에 둔다.
 1단계: 설정과 상품 확인
 이미 사용자가 제공한 정보는 다시 묻지 않는다. 부족한 경우에만 다음을 하나씩 받는다: TikTok 자동검색 또는 사용자가 제공한 TikTok 링크, 제품번호, 썸네일 두 줄 문구, 타겟 쇼츠 링크, 씬별 WAV 나레이션.
