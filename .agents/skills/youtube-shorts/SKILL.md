@@ -1,7 +1,11 @@
-name: coupang-shorts
-version: V12
-description: TikTok에서 중국어 상품명으로만 영상을 검색하고, 원본 자막을 강하게 블러한 쇼핑 쇼츠를 로컬에서 제작한다.
-쇼핑 쇼츠 제작 V12
+---
+name: youtube-shorts
+description: TikTok에서 중국어 상품명으로 쇼핑 영상을 검색하고, 원본 자막 블러, 한국어 나레이션 합성, 쇼핑 쇼츠 제작, 썸네일 생성 작업을 요청할 때 사용한다.
+metadata:
+  version: "V12"
+---
+
+# 쇼핑 쇼츠 제작 V12
 이 스킬은 사용자가 제공한 상품 정보와 준비된 한국어 WAV 나레이션으로 30초 미만 세로 쇼츠, 썸네일, 메타데이터를 로컬에서 만든다. 외부 서비스 API 연결이나 API 키 입력을 요구하지 않는다. TTS 생성은 포함하지 않으므로 씬별 WAV 음성을 준비해 프로젝트의 `audio/NN.wav`에 넣는다.
 설치와 작업 경로
 스킬 폴더의 `setup.py`를 한 번 실행한다. Python 3.10 이상, ffmpeg, ffprobe가 필요하다. ffmpeg가 PATH에 없으면 `FFMPEG_BIN`과 `FFPROBE_BIN` 환경변수로 실행 파일 경로를 지정한다. 중간 파일은 `COUPANG_SHORTS_PROJECT`로 지정한 폴더의 `output/` 아래에 둔다.
